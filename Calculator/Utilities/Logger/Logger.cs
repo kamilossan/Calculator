@@ -28,6 +28,7 @@ namespace Calculator.Utilities.Logger
             {
                 Console.WriteLine($"{_loggerName}:{state}:{logLevel}:{eventId}:{exception?.Message}"); 
             }
+            Console.WriteLine($"{_loggerName}:{state}:{logLevel}:{eventId}:{exception?.Message}");
             return;
         }
     }

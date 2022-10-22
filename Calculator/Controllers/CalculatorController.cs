@@ -1,9 +1,7 @@
 using Calculator.Models;
 using Calculator.Services;
-using Calculator.Utilities.Logger;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net;
 
 namespace Calculator.Controllers
 {
@@ -13,17 +11,20 @@ namespace Calculator.Controllers
     {
         private readonly ILogger<CalculatorController> _logger;
         private readonly ICalculatorService _calculatorService;
+        private readonly IBasicAuthorizationService _authorizationService;
 
-        public CalculatorController(ICalculatorService calculatorService, ILogger<CalculatorController> logger)
+        public CalculatorController(ICalculatorService calculatorService, IBasicAuthorizationService authorizationService, ILogger<CalculatorController> logger)
         {
             _logger = logger;
             _calculatorService = calculatorService;
+            _authorizationService = authorizationService;
 
         }
-
         [HttpPost(Name = "Calculate")]
         public IActionResult Calculate(CalculatorRequest request)
         {
+
+            if (!_authorizationService.IsAuthorized(ControllerContext.HttpContext.Request)) return new UnauthorizedResult();
             if (request.Parameters == null || request.Parameters?.Length < 2)
             {
                 return new BadRequestObjectResult(
