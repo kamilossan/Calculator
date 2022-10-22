@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Configuration;
 using Calculator.Utilities.SQL;
+using Calculator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(typeof(DataBaseContext));
+builder.Services.AddSingleton<ICalculatorService, CalculatorService>();
 
 //add sql logger
 builder.Host.ConfigureLogging((builderContext, logBuilder) =>
