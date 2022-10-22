@@ -1,4 +1,5 @@
-﻿using System.Runtime.ConstrainedExecution;
+﻿using Calculator.Utilities.SQL;
+using System.Runtime.ConstrainedExecution;
 
 namespace Calculator.Utilities.Logger
 {
@@ -7,10 +8,12 @@ namespace Calculator.Utilities.Logger
         private readonly string _loggerName;
         private readonly LoggerConfig _config;
         public const int SQL_EVENTID = 999;
-        public Logger(string name, LoggerConfig config)
+        private readonly DataBaseContext _dataBase;
+        public Logger(string name, LoggerConfig config, DataBaseContext dataBase)
         {
             _loggerName = name;
             _config = config;
+            _dataBase = dataBase;
         }
         public IDisposable BeginScope<TState>(TState state) => default!;
 

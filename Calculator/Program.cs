@@ -2,6 +2,7 @@ using Calculator.Utilities.Logger;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Configuration;
+using Calculator.Utilities.SQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton(typeof(DataBaseContext));
 
 //add sql logger
 builder.Host.ConfigureLogging((builderContext, logBuilder) =>
