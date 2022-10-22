@@ -11,8 +11,4 @@ namespace Calculator.Models
         public decimal[]? Parameters { get; set; }
 
     }
-    public enum OperationType
-    {
-        Add, Subtract, Multiply, Divide
-    }
 }
