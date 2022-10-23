@@ -1,12 +1,14 @@
-﻿using System.Runtime.ConstrainedExecution;
+﻿using Calculator.Utilities.SQL.Models;
+using Newtonsoft.Json;
+using System.Runtime.ConstrainedExecution;
 
 namespace Calculator.Utilities.Logger
 {
     public static class LoggerExtensions
     {
-        public static void LogSQL(this ILogger logger, string message, params object?[] args)
+        public static void LogSQL(this ILogger logger, LogEntry entry, LogLevel logLevel)
         {
-            logger.LogInformation(Logger.SQL_EVENTID, message, args);
+            logger.Log(logLevel, Logger.SQL_EVENTID, JsonConvert.SerializeObject(entry));
         }
     }
 }

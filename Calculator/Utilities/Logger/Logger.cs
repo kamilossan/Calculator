@@ -1,4 +1,6 @@
 ﻿using Calculator.Utilities.SQL;
+using Calculator.Utilities.SQL.Models;
+using Newtonsoft.Json;
 using System.Runtime.ConstrainedExecution;
 
 namespace Calculator.Utilities.Logger
@@ -24,11 +26,15 @@ namespace Calculator.Utilities.Logger
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
-            if (IsEnabled(logLevel) && eventId.Id == SQL_EVENTID)
-            {
-                Console.WriteLine($"{_loggerName}:{state}:{logLevel}:{eventId}:{exception?.Message}"); 
+            if (IsEnabled(logLevel)){
+                Console.WriteLine($"{_loggerName}:{state}:{logLevel}:{eventId}:{exception?.Message}");
+                if (eventId.Id == SQL_EVENTID)
+                {
+                    var logEntry = JsonConvert.DeserializeObject<LogEntry>(state!.ToString()!);
+                    _dataBase.Add(logEntry!);
+                    _dataBase.SaveChanges();
+                }
             }
-            Console.WriteLine($"{_loggerName}:{state}:{logLevel}:{eventId}:{exception?.Message}");
             return;
         }
     }

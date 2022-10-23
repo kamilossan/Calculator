@@ -10,7 +10,7 @@ namespace Calculator.Utilities.SQL
 
         public DataBaseContext(IConfiguration configuration)
         {
-            //can specify custom location in appsettings.json by adding DbPath property
+            //can specify custom location in appsettings by adding DbPath property
             DbPath = configuration["DbPath"] ?? Path.Join(Directory.GetCurrentDirectory(), "logs.db");
             Console.WriteLine($"SQL database location: {DbPath}");
         }

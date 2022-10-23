@@ -1,5 +1,7 @@
 using Calculator.Models;
 using Calculator.Services;
+using Calculator.Utilities.Helpers;
+using Calculator.Utilities.Logger;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -25,6 +27,7 @@ namespace Calculator.Controllers
         {
 
             if (!_authorizationService.IsAuthorized(ControllerContext.HttpContext.Request)) return new UnauthorizedResult();
+            if (request.Parameters != null && request.Operation != null) _logger.LogSQL(LogEntryHelpers.GenerateLogEntry(request.Operation, request.Parameters), LogLevel.Information);
             if (request.Parameters == null || request.Parameters?.Length < 2)
             {
                 return new BadRequestObjectResult(
@@ -34,6 +37,7 @@ namespace Calculator.Controllers
                     })
                     );
             }
+
             CalculatorRequestResponse response = request.Operation?.ToLower() switch
             {
 
