@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "e0350d82-4cc2-48ee-9239-16872f16a340",
+		"name": "Calculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14568484"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"add\",\r\n    \"parameters\": [1,2,3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/Calculator",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"Calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subtract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"subtract\",\r\n    \"parameters\": [1,2,3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/Calculator",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"Calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Multiply",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"multiply\",\r\n    \"parameters\": [1,2,3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/Calculator",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"Calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Divide",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"divide\",\r\n    \"parameters\": [1,2,3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/Calculator",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"Calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Logs",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "https://localhost:7003",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "test",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "test",
+			"type": "string"
+		}
+	]
+}
