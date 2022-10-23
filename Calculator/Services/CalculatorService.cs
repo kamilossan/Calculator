@@ -12,6 +12,8 @@ namespace Calculator.Services
     }
     public class CalculatorService : ICalculatorService
     {
+        private const string _overflowMessage = "Result either too small or too large";
+        private const string _divideZeroMessage = "Cannot divide by 0";
         public CalculatorRequestResponse Add(CalculatorRequest request)
         {
             decimal result;
@@ -23,7 +25,7 @@ namespace Calculator.Services
             {
                 return new CalculatorRequestResponse
                 {
-                    Error = "Result either too small or too large"
+                    Error = _overflowMessage
                 };
             }
             return new CalculatorRequestResponse { Result = result };
@@ -40,14 +42,14 @@ namespace Calculator.Services
                 {
                     return new CalculatorRequestResponse
                     {
-                        Error = "Result either too small or too large"
+                        Error = _overflowMessage
                     };
                 }
                 catch (DivideByZeroException)
                 {
                     return new CalculatorRequestResponse
                     {
-                        Error = "Cannot divide by 0"
+                        Error = _divideZeroMessage
                     };
                 }
             return new CalculatorRequestResponse { Result = result };
@@ -64,7 +66,7 @@ namespace Calculator.Services
             {
                 return new CalculatorRequestResponse
                 {
-                    Error = "Result either too small or too large"
+                    Error = _overflowMessage
                 };
             }
             return new CalculatorRequestResponse { Result = result };
@@ -81,7 +83,7 @@ namespace Calculator.Services
             {
                 return new CalculatorRequestResponse
                 {
-                    Error = "Result either too small or too large"
+                    Error = _overflowMessage
                 };
             }
             return new CalculatorRequestResponse { Result = result };
